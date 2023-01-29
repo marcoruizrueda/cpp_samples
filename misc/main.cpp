@@ -70,7 +70,7 @@ int main()
     // Omit size of array at declaration
     int class_sizes [] {10, 20, 30, 12};
     */
-    // If a charcacter array is null terminated, it's called as C-String
+    // If a character array is null terminated, it's called as C-String
     char message1 [] {'H', 'i', '\0'};
     std::cout << message1 << std::endl;
     std::cout << "Size of message1: " << sizeof(message1) << std::endl;
