@@ -2,13 +2,19 @@
 #include <stdlib.h>
 #include <string.h>
 
-struct Person {
+typedef unsigned short WORD;
+typedef unsigned char BYTE;
+#define MAKEWORD(a,b) ((WORD)(((BYTE)(a))|(((WORD)((BYTE)(b)))<<8)))
+
+struct Person
+{
     int age;
     char name[30];
     int experience;
 };
 
-struct Family {
+struct Family
+{
     struct Person person;
     char pets[2][30];
 };
@@ -36,8 +42,10 @@ int main()
     char grade = 'A';
 
     printf("%p", &age);
-    */
 
+    //--------------------------------------------
+
+    // Struct variable
     struct Person personPolice = {35, "Marco A.", 11};
     printf("%s is %d years old and has %d years of experience\n", personPolice.name, personPolice.age, personPolice.experience);
 
@@ -54,6 +62,45 @@ int main()
     strcpy(family.pets[0], "Linda");
     strcpy(family.pets[1], "Pipa");
     printf("%s is %d years old and has %d years of experience - Pets: %s and %s\n", family.person.name, family.person.age, family.person.experience, family.pets[0], family.pets[1]);
-   
-   return 0;
+
+
+    //--------------------------------------------
+    // Pointers
+    int *pAge;
+    pAge = &age;
+    printf("Address of pAge: %p\n", pAge);
+    printf("Value of pAge: %d\n", *pAge);
+
+    */
+
+    //--------------------------------------------
+    //
+    void calculate_makeword(int n1, int n2)
+    {
+        int mW = MAKEWORD(n1,n2);
+
+        printf("\nMakeword: HEXA %X", mW);
+        printf("\nMakeword int: %d", mW);
+
+        printf("\nMakeword binary: ");
+        int a[10], i;
+        // Loop to calculate and store the binary format
+        for (i = 0; mW > 0; i++) {
+            a[i] = mW % 2;
+            mW = mW / 2;
+        }
+
+        // Loop to print the binary format of given number
+        for (i = i - 1; i >= 0; i--)
+        {
+            printf("%d", a[i]);
+        }
+
+    }
+
+    // Invoke MAKEWORD
+    calculate_makeword(2, 2);
+
+
+    return 0;
 }

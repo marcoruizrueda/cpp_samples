@@ -1,0 +1,6 @@
+.vscode
+*.exe
+rooster
+*.depend
+*.layout
+*.o
