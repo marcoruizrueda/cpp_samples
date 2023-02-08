@@ -1,8 +1,10 @@
 #include <iostream>
+#include <inttypes.h>
+#include <bitset>
 
 #define HIBYTE(word)             (static_cast<uint8>((static_cast<uint16>(word))>>8))
 #define LOBYTE(word)             (static_cast<uint8>((static_cast<uint16>(word))&0x00FF))
-#define MAKEWORD(hibyte,lobyte)  (((static_cast<uint16>(hibyte))<<8) | ((static_cast<uint16>(lobyte))&0x00FF))
+#define MAKEWORD(hibyte,lobyte)  (((static_cast<uint16_t>(hibyte))<<8) | ((static_cast<uint16_t>(lobyte))&0x00FF))
 
 
 int main()
@@ -79,10 +81,78 @@ int main()
     char message1[]{'H', 'i', '\0'};
     std::cout << message1 << std::endl;
     std::cout << "Size of message1: " << sizeof(message1) << std::endl;
-    */
+    
+    
+    // ---------------------------
+    uint16_t lTlvHdr = MAKEWORD(2, 3);
+    uint16_t result;
+    uint8_t oTlvType;
+    // shift to get the MSB 7 bits
+    oTlvType = lTlvHdr >> 9;
+    // grab the LSB 9 bits as TlvLen
+    result = lTlvHdr & 0x1FF;
+    
+    std::bitset<16> y(lTlvHdr);
+    std::cout << y << '\n';
+    
+    std::bitset<16> yy(result);
+    std::cout << yy << '\n';
     
     // ---------------------------
 
 
+    int i=0;
+    while (i < 6 && 1!=2)
+	{
+		std::cout << "-------- " << i << std::endl;
+        if (i+1 == 6){
+			break;
+		}
+        
+		++i;
+	}
+    std::cout << "+++++++ " << i << std::endl;
+    //std::cout << oTlvType << std::endl;
+    
+    int i;
+    for( i = 0 ; i < 10; i++ )
+    {
+        std::cout << "--------" << i << "_" << std::endl;
+    }
+
+    if(i == 10){
+        i--;
+    }
+
+    std::cout << "+++++++ " << i << std::endl;
+    */
+   std::cout << "+++++++ " << 1024>>6 << std::endl;
+    // ---------------------------
+    /*
+    uint8_t mRxMSAPDU1_1[] = 
+    {
+     0x01, 0x80, 0xC2, 0x00, 0x00, 0x0e                     // Destination MAC
+    , 0x00, 0x04, 0x63, 0xaa, 0x01, 0x01                     // Source MAC
+    , 0x88, 0xcc                                             // LLDP EtherType
+    , 0xab, 0xcd                                             // Padding bytes
+    , 0x02, 0x07, 0x04, 0x00, 0x04, 0x63, 0xaa, 0x01, 0x00   // Chassis ID Tlv
+    , 0x04, 0x07, 0x03, 0x00, 0x04, 0x63, 0xaa, 0x01, 0x01   // Port ID Tlv
+    , 0x06, 0x02, 0x00, 0x78                                 // TTL Tlv
+    , 0x08, 0x09, 'P', 'o', 'r', 't', 'D', 'e', 's', 'c', 'r'// Port Descr Tlv
+    , 0x0A, 0x07, 'S', 'y', 's', 'N', 'a', 'm', 'e'          // System Name Tlv
+    , 0x0C, 0x08, 'S', 'y', 's', 'D', 'e', 's', 'c', 'r'     // System Descr Tlv
+    , 0x0E, 0x04, 0x01, 0x00, 0x01, 0x00                     // System Capabilities Tlv
+    , 0x00, 0x00                                             // End of LLDPDU Tlv
+    };
+
+    
+    std::cout << sizeof(mRxMSAPDU1_1) << std::endl;
+
+    for(size_t i=0; i<sizeof(mRxMSAPDU1_1); ++i){
+        std::cout << "Element: " << mRxMSAPDU1_1[i]+14 << std::endl;
+    }
+
+    std::cout << sizeof(uint16_t) << std::endl;
+    */
     return 0;
 }
