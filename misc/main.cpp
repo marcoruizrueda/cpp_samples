@@ -82,7 +82,7 @@ int main()
     std::cout << message1 << std::endl;
     std::cout << "Size of message1: " << sizeof(message1) << std::endl;
     
-    
+    */
     // ---------------------------
     uint16_t lTlvHdr = MAKEWORD(2, 3);
     uint16_t result;
@@ -100,7 +100,7 @@ int main()
     
     // ---------------------------
 
-
+    /*
     int i=0;
     while (i < 6 && 1!=2)
 	{
@@ -125,10 +125,10 @@ int main()
     }
 
     std::cout << "+++++++ " << i << std::endl;
-    */
+    
    std::cout << "+++++++ " << 1024>>6 << std::endl;
     // ---------------------------
-    /*
+    
     uint8_t mRxMSAPDU1_1[] = 
     {
      0x01, 0x80, 0xC2, 0x00, 0x00, 0x0e                     // Destination MAC
